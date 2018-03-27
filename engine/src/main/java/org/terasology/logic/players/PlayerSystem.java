@@ -86,7 +86,7 @@ public class PlayerSystem extends BaseComponentSystem implements UpdateSubscribe
                 if (playerStore == null) {
                     spawnPlayer(spawning.clientEntity);
                 } else {
-                    playerStore.restoreEntities();
+                    playerStore.restoreEntities(spawning.clientEntity);
                     EntityRef character = playerStore.getCharacter();
                     restoreCharacter(spawning.clientEntity, character);
                 }
@@ -137,7 +137,7 @@ public class PlayerSystem extends BaseComponentSystem implements UpdateSubscribe
 
             if (worldProvider.isBlockRelevant(storedLocation)) {
                 // chunk for spawning location is ready, so spawn right now
-                playerStore.restoreEntities();
+                playerStore.restoreEntities(entity);
                 EntityRef character = playerStore.getCharacter();
                 Vector3i viewDist = owner.getViewDistance().getChunkDistance();
                 addRelevanceEntity(entity, viewDist, owner);

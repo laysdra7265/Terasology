@@ -312,6 +312,15 @@ public class PojoEntityManager implements EngineEntityManager {
     }
 
     @Override
+    public EntityRef createEntityWithId(long id, Iterable<Component> components, EntityRef owner) {
+        EntityBuilder builder = newBuilder();
+        builder.addComponents(components);
+        builder.setId(id);
+        builder.setOwner(owner);
+        return builder.build();
+    }
+
+    @Override
     public void subscribeForChanges(EntityChangeSubscriber subscriber) {
         subscribers.add(subscriber);
     }

@@ -48,13 +48,13 @@ import static org.terasology.protobuf.EntityData.Entity.Scope.SECTOR;
  *
  */
 public class EntitySerializer {
-    private EngineEntityManager entityManager;
+    protected EngineEntityManager entityManager;
     private PrefabManager prefabManager;
     private ComponentLibrary componentLibrary;
     private ComponentSerializer componentSerializer;
 
     private ComponentSerializeCheck componentSerializeCheck = ComponentSerializeCheck.NullCheck.create();
-    private boolean ignoringEntityId;
+    protected boolean ignoringEntityId;
 
     /**
      * @param entityManager The entityManager that deserialized entities will be placed in.
@@ -184,7 +184,7 @@ public class EntitySerializer {
      * @param entityData
      * @return The mapping of components
      */
-    private Map<Class<? extends Component>, Component> createInitialComponents(EntityData.Entity entityData) {
+    protected Map<Class<? extends Component>, Component> createInitialComponents(EntityData.Entity entityData) {
         Set<ComponentMetadata<?>> removedComponents = Sets.newHashSet();
         for (String removedComp : entityData.getRemovedComponentList()) {
             ComponentMetadata<?> removedMetadata = componentLibrary.resolve(removedComp);
@@ -213,7 +213,7 @@ public class EntitySerializer {
      * @param entityData
      * @param componentMap
      */
-    private void deserializeOntoComponents(EntityData.Entity entityData, Map<Class<? extends Component>, Component> componentMap) {
+    protected void deserializeOntoComponents(EntityData.Entity entityData, Map<Class<? extends Component>, Component> componentMap) {
         EntityInfoComponent entityInfo = (EntityInfoComponent) componentMap.get(EntityInfoComponent.class);
         if (entityInfo == null) {
             entityInfo = new EntityInfoComponent();

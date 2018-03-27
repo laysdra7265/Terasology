@@ -49,6 +49,16 @@ public interface EngineEntityManager extends LowLevelEntityManager, EngineEntity
     EntityRef createEntityWithId(long id, Iterable<Component> components);
 
     /**
+     * Allows the creation of an entity with a given id - this is used
+     * when loading persisted entities
+     *
+     * @param id
+     * @param components
+     * @return The entityRef for the newly created entity
+     */
+    EntityRef createEntityWithId(long id, Iterable<Component> components ,EntityRef owner);
+
+    /**
      * Creates an entity ref with the given id. This is used when loading components with references.
      *
      * @param id

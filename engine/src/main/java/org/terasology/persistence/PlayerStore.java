@@ -30,7 +30,7 @@ public interface PlayerStore {
     /**
      * Restores all entities contained in this store, activating them.
      */
-    void restoreEntities();
+    void restoreEntities(EntityRef controller);
 
     /**
      * Stores the character

@@ -192,7 +192,7 @@ public class StorageManagerTest extends TerasologyTestingEnvironment {
         esm.finishSavingAndShutdown();
 
         PlayerStore restored = esm.loadPlayerStore(PLAYER_ID);
-        restored.restoreEntities();
+        restored.restoreEntities(EntityRef.NULL);
         assertTrue(restored.hasCharacter());
         assertEquals(character, restored.getCharacter());
     }
@@ -235,7 +235,7 @@ public class StorageManagerTest extends TerasologyTestingEnvironment {
         newSM.loadGlobalStore();
 
         PlayerStore restored = newSM.loadPlayerStore(PLAYER_ID);
-        restored.restoreEntities();
+        restored.restoreEntities(EntityRef.NULL);
         assertTrue(restored.getCharacter().getComponent(EntityRefComponent.class).entityRef.exists());
     }
 
